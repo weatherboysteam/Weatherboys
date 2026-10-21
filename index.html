@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#902505">
+<meta name="description" content="Weatherboys — independent events, music and culture. Make some weather. Make a scene.">
+<title>WEATHERBOYS — Make Some Weather</title>
+<style>
+:root{
+ --red:#902505;--sand:#d1be9d;--green:#305e3e;--darkred:#6e1212;
+ --brown:#6b4424;--charcoal:#3c3c3c;--blue:#062b52;
+ --ink:#171613;--paper:#f1eee7;--white:#fffdf8;--muted:#c9c1b3;
+ --display:Impact,"Arial Narrow",Haettenschweiler,sans-serif;
+ --body:Arial,Helvetica,sans-serif;--script:"Brush Script MT","Segoe Script",cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.5}
+a{color:inherit}
+img{display:block;max-width:100%}
+button,a{ -webkit-tap-highlight-color:transparent}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+.topbar{background:var(--ink);color:var(--paper);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:9px 0}
+.topbar .wrap{display:flex;justify-content:space-between;gap:12px}
+header{position:sticky;top:0;z-index:10;background:rgba(241,238,231,.96);backdrop-filter:blur(12px);border-bottom:1px solid #d8d0c3}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:76px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:43px;height:43px;border-radius:50%}
+.brand-word{font-family:var(--display);font-stretch:condensed;letter-spacing:-.04em;font-size:1.65rem;line-height:.9}
+.brand-word small{display:block;font:700 .56rem var(--body);letter-spacing:.2em;margin-top:5px}
+nav{display:flex;align-items:center;gap:24px}
+nav a{text-decoration:none;text-transform:uppercase;font-size:.75rem;font-weight:800;letter-spacing:.1em}
+nav a:hover{color:var(--red)}
+.cta{display:inline-flex;justify-content:center;align-items:center;gap:10px;padding:14px 19px;background:var(--red);color:white;text-decoration:none;font-size:.75rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--red);transition:.2s}
+.cta:hover{background:var(--darkred);transform:translateY(-2px)}
+.cta.outline{background:transparent;color:var(--paper);border-color:var(--sand)}
+.cta.outline:hover{background:var(--sand);color:var(--ink)}
+.menu-btn{display:none;border:0;background:none;font-size:1.7rem}
+.hero{background:var(--green);color:var(--paper);position:relative;overflow:hidden;min-height:640px;display:flex;align-items:center}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,20,15,.9),rgba(15,20,15,.38) 65%,rgba(15,20,15,.1));pointer-events:none}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.58;filter:saturate(.75)}
+.hero-inner{position:relative;z-index:1;padding:90px 0;max-width:830px}
+.kicker{font-size:.72rem;font-weight:900;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.kicker:before{content:"";height:2px;width:35px;background:var(--sand)}
+h1,h2,h3,p{margin-top:0}
+h1{font-family:var(--display);font-size:clamp(4.5rem,12vw,9.7rem);font-weight:500;letter-spacing:-.055em;line-height:.78;margin:27px 0;color:var(--sand);text-transform:uppercase}
+h1 span{display:block;color:var(--paper);font-size:.38em;letter-spacing:.015em;line-height:1.15;margin-top:20px}
+.hero p{font-size:clamp(1rem,2vw,1.25rem);max-width:560px;color:#eee8dd;margin:28px 0 30px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stamp{position:absolute;right:5%;bottom:8%;width:clamp(100px,15vw,190px);z-index:1;transform:rotate(8deg);border-radius:50%;mix-blend-mode:screen}
+.ticker{background:var(--red);color:var(--paper);overflow:hidden;white-space:nowrap;padding:12px 0;font-family:var(--display);font-size:1.3rem;letter-spacing:.08em}
+.ticker span{display:inline-block;padding-left:24px}
+.section{padding:94px 0}
+.section.dark{background:var(--ink);color:var(--paper)}
+.section.blue{background:var(--blue);color:var(--paper)}
+.section.green{background:var(--green);color:var(--paper)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:38px}
+.section-head h2,.about-copy h2,.booking-copy h2{font-family:var(--display);font-weight:500;letter-spacing:-.035em;font-size:clamp(2.8rem,6vw,5.5rem);line-height:.9;margin:12px 0 0;text-transform:uppercase}
+.section-head p{max-width:390px;color:#777064;margin:0}
+.dark .section-head p,.blue .section-head p,.green .section-head p{color:#d0c9bd}
+.eyebrow{font-size:.7rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+.dark .eyebrow,.green .eyebrow,.blue .eyebrow{color:var(--sand)}
+.events-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+.event-feature{position:relative;min-height:420px;background:var(--charcoal);overflow:hidden}
+.event-feature img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;opacity:.75}
+.event-feature:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.9),transparent 65%)}
+.event-content{position:absolute;z-index:1;left:26px;right:26px;bottom:24px}
+.event-content h3{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:500;line-height:.92;margin:10px 0}
+.event-content p{color:#e0d9cf;margin-bottom:0}
+.event-side{display:grid;grid-template-rows:1fr 1fr;gap:22px}
+.event-small{display:grid;grid-template-columns:42% 1fr;background:#262522;min-height:190px}
+.event-small img{height:100%;width:100%;object-fit:cover}
+.event-small div{padding:22px;align-self:center}
+.event-small h3{font-family:var(--display);font-size:1.8rem;font-weight:500;line-height:1;margin:8px 0}
+.event-small p{font-size:.86rem;color:#c9c1b3;margin:0}
+.note{font-size:.78rem;color:#9f988c;margin-top:18px}
+.music-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.music-card{background:#242321;border:1px solid #49443d;min-width:0}
+.music-card .photo{height:220px;overflow:hidden;position:relative}
+.music-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.music-card:hover img{transform:scale(1.04)}
+.music-card .card-body{padding:22px}
+.music-card .card-body h3{font-family:var(--display);font-size:2rem;font-weight:500;margin:8px 0}
+.music-card .card-body p{font-size:.9rem;color:#c9c1b3;min-height:44px}
+.text-link{display:inline-flex;gap:8px;align-items:center;text-decoration:none;text-transform:uppercase;font-size:.72rem;font-weight:900;letter-spacing:.1em;border-bottom:1px solid var(--sand);padding-bottom:5px;color:var(--sand)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-image{position:relative}
+.about-image img{width:100%;height:520px;object-fit:cover;filter:saturate(.75)}
+.about-image:after{content:"WTHRBZ";position:absolute;right:-12px;bottom:-22px;background:var(--sand);color:var(--red);font-family:var(--display);font-size:2.8rem;padding:12px 18px;transform:rotate(-4deg)}
+.about-copy h2{margin:15px 0 26px}
+.about-copy p{color:#ded7cb;font-size:1.04rem;max-width:520px}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.value{border-top:1px solid #786f60;padding-top:14px}
+.value strong{display:block;font-family:var(--display);font-size:1.35rem;font-weight:500;color:var(--sand)}
+.value span{font-size:.78rem;color:#c9c1b3}
+.booking{display:grid;grid-template-columns:1fr .9fr;gap:50px;align-items:start}
+.booking-copy p{max-width:520px;color:#d2cabe;margin-top:24px}
+.booking-panel{background:var(--sand);color:var(--ink);padding:30px}
+.booking-panel h3{font-family:var(--display);font-size:2.2rem;font-weight:500;margin-bottom:12px}
+.booking-panel p{font-size:.9rem}
+.booking-links{display:grid;gap:10px;margin-top:22px}
+.booking-links a{display:flex;justify-content:space-between;gap:15px;padding:15px;background:rgba(255,255,255,.38);text-decoration:none;font-weight:800;font-size:.82rem}
+.booking-links a:hover{background:var(--white)}
+footer{background:#11110f;color:var(--paper);padding:34px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.footer-brand{font-family:var(--display);font-size:2rem;color:var(--sand)}
+footer p{font-size:.75rem;color:#a8a194;margin:5px 0 0}
+.socials{display:flex;gap:15px;flex-wrap:wrap}
+.socials a{font-size:.7rem;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font-weight:900}
+.socials a:hover{color:var(--sand)}
+@media(max-width:800px){
+ nav{display:none;position:absolute;top:76px;left:0;right:0;background:var(--paper);padding:22px 20px 26px;flex-direction:column;align-items:stretch;border-bottom:1px solid #d8d0c3}
+ nav.open{display:flex}
+ nav a{padding:9px 0}
+ .menu-btn{display:block}
+ .nav>.cta{display:none}
+ .hero{min-height:600px}
+ .hero-stamp{right:-12px;bottom:5%;opacity:.65}
+ .section{padding:68px 0}
+ .section-head{align-items:start;flex-direction:column}
+ .events-grid,.about-grid,.booking{grid-template-columns:1fr}
+ .event-feature{min-height:380px}
+ .event-side{grid-template-rows:auto}
+ .event-small{min-height:165px}
+ .music-grid{grid-template-columns:1fr}
+ .music-card{display:grid;grid-template-columns:38% 1fr}
+ .music-card .photo{height:100%;min-height:210px}
+ .music-card .card-body{padding:18px}
+ .music-card .card-body p{min-height:0}
+ .about-grid{gap:35px}
+ .about-image img{height:390px}
+ .booking{gap:30px}
+ .footer-inner{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:450px){
+ .wrap{width:min(100% - 28px,1180px)}
+ .topbar .wrap{font-size:.6rem}
+ .brand-word{font-size:1.4rem}
+ .hero{min-height:570px}
+ h1{font-size:4.5rem}
+ .hero-stamp{width:95px;right:0;bottom:4%}
+ .hero-actions .cta{width:100%}
+ .event-small{grid-template-columns:38% 1fr}
+ .event-small div{padding:14px}
+ .event-small h3{font-size:1.5rem}
+ .music-card{grid-template-columns:1fr}
+ .music-card .photo{height:190px;min-height:0}
+ .values{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span>Independent events · music · culture</span><span>Cape Town / Stellenbosch, South Africa</span></div></div>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#home" aria-label="Weatherboys home"><img src="assets/vinyl-sand.png" alt=""><span class="brand-word">WEATHERBOYS<small>WTHRBZ · WHERE THA BOYS?</small></span></a>
+  <nav id="main-nav" aria-label="Main navigation">
+   <a href="#events">Events</a><a href="#music">Music</a><a href="#about">About</a><a href="#bookings">Bookings</a>
+  </nav>
+  <a class="cta" href="#bookings">Work with us ↗</a>
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+ </div>
+</header>
+<main>
+<section class="hero" id="home">
+ <img class="hero-bg" src="assets/event-crowd.jpg" alt="">
+ <div class="wrap hero-inner">
+  <div class="kicker">Independent by nature. Loud by design.</div>
+  <h1>Make some<br>weather.<span>Make a scene.</span></h1>
+  <p>WEATHERBOYS is an independent events and music collective bringing people together through sound, nights worth remembering, and a culture of our own.</p>
+  <div class="hero-actions"><a class="cta" href="#events">Explore events ↗</a><a class="cta outline" href="#music">Hear the sound</a></div>
+ </div>
+ <img class="hero-stamp" src="assets/vinyl-sand.png" alt="Weatherboys vinyl record mark">
+</section>
+<div class="ticker"><span>WTHRBZ ✳ WHERE THA BOYS? ✳ SOUND • PEOPLE • PLACES ✳ MAKE SOME WEATHER ✳ WTHRBZ ✳ WHERE THA BOYS? ✳ SOUND • PEOPLE • PLACES ✳</span></div>
+<section class="section" id="events">
+ <div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Pull up. Be part of it.</div><h2>Events & nights</h2></div><p>From club nights to one-off experiences, we build spaces for good music, good people and stories worth taking home.</p></div>
+  <div class="events-grid">
+   <article class="event-feature"><img src="assets/event-night.jpg" alt="Weatherboys at a live event"><div class="event-content"><div class="eyebrow">The Weatherboys experience</div><h3>One room.<br>One energy.</h3><p>Event announcements and ticket links will live here.</p></div></article>
+   <div class="event-side">
+    <article class="event-small"><img src="assets/event-poster.jpg" alt="Past event poster from the Weatherboys brand kit"><div><div class="eyebrow">Past events</div><h3>Proof of life.</h3><p>A growing archive of nights, collaborators and moments.</p></div></article>
+    <article class="event-small"><img src="assets/event-phone.jpg" alt="Capturing a live event on a phone"><div><div class="eyebrow">Next up</div><h3>Stay in the loop.</h3><p>Follow our socials for the next announcement.</p><a class="text-link" href="#socials">Follow updates ↗</a></div></article>
+   </div>
+  </div>
+  <p class="note">Upcoming dates and ticket links will be added here once confirmed. Past event imagery is used as a brand portfolio, not as a current ticket listing.</p>
+ </div>
+</section>
+<section class="section dark" id="music">
+ <div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">The soundtrack</div><h2>Press play.</h2></div><p>DJ sets, mixes and moments from the dancefloor. Plug in to the Weatherboys sound.</p></div>
+  <div class="music-grid">
+   <article class="music-card"><div class="photo"><img src="assets/dj-setup.jpg" alt="DJ equipment during a live set"></div><div class="card-body"><div class="eyebrow">Watch</div><h3>Live sets</h3><p>Full-length sets, live recordings and video from the booth.</p><a class="text-link" href="https://youtube.com/" target="_blank" rel="noopener">YouTube ↗</a></div></article>
+   <article class="music-card"><div class="photo"><img src="assets/event-crowd.jpg" alt="Crowd at a Weatherboys event"></div><div class="card-body"><div class="eyebrow">Listen</div><h3>Mix archive</h3><p>Selections, mixes and sounds that shape the nights.</p><a class="text-link" href="https://soundcloud.com/" target="_blank" rel="noopener">SoundCloud ↗</a></div></article>
+   <article class="music-card"><div class="photo"><img src="assets/event-night.jpg" alt="Nightlife and event lights"></div><div class="card-body"><div class="eyebrow">Follow</div><h3>Behind the noise</h3><p>Clips, announcements, backstage and the people behind it.</p><a class="text-link" href="#socials">Social channels ↗</a></div></article>
+  </div>
+  <p class="note">The YouTube and SoundCloud buttons currently point to the platforms' homepages. Replace these with the official Weatherboys profiles before launch promotion.</p>
+ </div>
+</section>
+<section class="section green" id="about">
+ <div class="wrap about-grid">
+  <div class="about-image"><img src="assets/weatherboys-portrait.jpg" alt="Weatherboys community and nightlife"></div>
+  <div class="about-copy"><div class="eyebrow">Who we are</div><h2>More than a night out.</h2>
+   <p>Weatherboys is an independent events and music brand built around shared energy, bold ideas and a community that wants to be in the room when something happens.</p>
+   <p>We bring together DJs, venues, creatives and audiences to make nights with their own identity — from the music and visuals to the people and atmosphere.</p>
+   <div class="values"><div class="value"><strong>Sound</strong><span>Music with character</span></div><div class="value"><strong>People</strong><span>Community first</span></div><div class="value"><strong>Places</strong><span>Nights that stay with you</span></div></div>
+  </div>
+ </div>
+</section>
+<section class="section blue" id="bookings">
+ <div class="wrap booking">
+  <div class="booking-copy"><div class="eyebrow">Let's make something happen</div><h2>Bookings<br>& collabs.</h2><p>Looking to book a DJ, collaborate on an event, work with our team or bring Weatherboys to your venue? Get in touch with the details and we'll take it from there.</p><p>For faster replies, include your event date, venue, city, expected crowd, set time and budget.</p></div>
+  <div class="booking-panel"><div class="eyebrow">For promoters, venues & creatives</div><h3>Open the conversation.</h3><p>Choose the channel that suits your enquiry. Add your official contact details before publishing.</p><div class="booking-links">
+   <a href="mailto:YOUR-EMAIL@example.com?subject=Weatherboys%20booking%20enquiry"><span>Booking enquiries</span><span>↗</span></a>
+   <a href="https://instagram.com/" target="_blank" rel="noopener"><span>Event & brand partnerships</span><span>↗</span></a>
+   <a href="https://tiktok.com/" target="_blank" rel="noopener"><span>Content & collaborations</span><span>↗</span></a>
+  </div><p class="note" style="color:#6a6257">Replace the placeholder email and platform links with official Weatherboys contact details.</p></div>
+ </div>
+</section>
+</main>
+<footer id="socials"><div class="wrap footer-inner"><div><div class="footer-brand">WTHRBZ.</div><p>WEATHERBOYS · Independent events, music & culture.</p><p>© <span id="year"></span> Weatherboys. All rights reserved.</p></div><div class="socials">
+<a href="https://instagram.com/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://youtube.com/" target="_blank" rel="noopener">YouTube ↗</a><a href="https://tiktok.com/" target="_blank" rel="noopener">TikTok ↗</a><a href="https://soundcloud.com/" target="_blank" rel="noopener">SoundCloud ↗</a><a href="https://x.com/" target="_blank" rel="noopener">X ↗</a><a href="mailto:YOUR-EMAIL@example.com">Email ↗</a>
+</div></div></footer>
+<script>
+const btn=document.getElementById('menu-btn'),nav=document.getElementById('main-nav');
+btn.addEventListener('click',()=>{const open=nav.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));btn.textContent=open?'×':'☰';});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.textContent='☰';}));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
